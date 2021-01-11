@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import logo from '../component/calendar.svg'
-
+import React, { useState } from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Form() {
-  
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
     return (
       <>
       <div className='widgetForm'>
@@ -15,37 +16,24 @@ export default function Form() {
           distracted by the readable content of a page when
           lookink at its layout</p>
           <form className='form'>
-            <input placeholder='Deport date' className='datepick1'/>
-            <input placeholder='Return date' className='datepick2'/>
+            <DatePicker
+            className='datepick1' 
+            placeholderText ='Depart date'
+            selected={startDate} 
+            onChange={date => setStartDate(date)}
+            dateFormat='dd/MM/yyyy' 
+            />
+            <DatePicker
+            className='datepick2' 
+            placeholderText ='Report date'
+            selected={endDate} 
+            onChange={date => setEndDate(date)} 
+            dateFormat='dd/MM/yyyy' 
+            />
             <button type ='submit' className='subbtn'>SEARCH</button>
           </form>
-            
         </div>
       </div>
       </>
     );
-}
-
-
-
-{/* <>
-      <div className='widgetForm'>
-        <div className='title'>
-          <p>Where does it come from? Why do we use it?</p>
-        </div>
-        <div className='description'>
-          <p>It is a long established fact that a reader will be
-          distracted by the readable content of a page when
-          lookink at its layout</p>
-          <form id='form'>
-            <select className='datepick1'>
-              <option selected disabled hidden>Depart date</option>
-            </select>
-            <select className='datepick2'>
-              <option selected disabled hidden>Return date</option>
-            </select>
-            <button type ='submit' className='subbtn'>SEARCH</button>
-          </form> 
-        </div>
-      </div>
-      </> */}
+};
